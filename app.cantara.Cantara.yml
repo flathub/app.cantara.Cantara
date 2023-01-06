@@ -25,15 +25,17 @@ modules:
   - name: cantara
     sources:
       - type: archive
-        url: https://github.com/reckel-jm/cantara/archive/refs/tags/v2.3.2.tar.gz
-        sha256: 04491f268275d526b212a2921472e7db04823d0e2589395161051eb5c8333184
+        url: https://github.com/reckel-jm/cantara/archive/refs/tags/v2.4.0.tar.gz
+        sha256: 7f5b2b5908982b5417ae18d64e25ed5cf24c4c5fe1c7b2ccc3741391dc52ab4e
     buildsystem: simple
     build-commands:
       - |
         . /usr/lib/sdk/freepascal/enable.sh
+        cd src
         lazbuild --lazarusdir="$LAZARUS_DIR" -B --bm="Release" --ws="qt5" Cantara.lpi
-      - install -D cantara -t $FLATPAK_DEST/bin
-      - cp -r languages $FLATPAK_DEST/bin/
+        cd ..
+      - install -D src/cantara -t $FLATPAK_DEST/bin
+      - cp -r src/languages $FLATPAK_DEST/bin/
       - install -D icons/64.png $FLATPAK_DEST/share/icons/hicolor/64x64/apps/app.cantara.Cantara.png
       - install -D icons/128.png $FLATPAK_DEST/share/icons/hicolor/128x128/apps/app.cantara.Cantara.png
       - install -D app.cantara.Cantara.desktop -t $FLATPAK_DEST/share/applications
