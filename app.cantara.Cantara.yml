@@ -25,8 +25,8 @@ modules:
   - name: cantara
     sources:
       - type: archive
-        url: https://github.com/reckel-jm/cantara/archive/refs/tags/v2.4.0.tar.gz
-        sha256: 7f5b2b5908982b5417ae18d64e25ed5cf24c4c5fe1c7b2ccc3741391dc52ab4e
+        url: https://github.com/reckel-jm/cantara/archive/refs/tags/v2.4.1.tar.gz
+        sha256: 543754af4f962307acad88606d68b39b0cc788131c5a73c01a2141020b16ab6d
     buildsystem: simple
     build-commands:
       - |
