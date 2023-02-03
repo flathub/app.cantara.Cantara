@@ -24,9 +24,10 @@ modules:
           - cp -r /usr/lib/sdk/freepascal/share/lazarus/lcl/interfaces/qt5/cbindings/. .
   - name: cantara
     sources:
-      - type: archive
-        url: https://github.com/reckel-jm/cantara/archive/refs/tags/v2.4.1.tar.gz
-        sha256: 543754af4f962307acad88606d68b39b0cc788131c5a73c01a2141020b16ab6d
+      - type: git
+        url: https://github.com/reckel-jm/cantara.git
+        tag: v2.4.1
+        commit: e589bdd9ce960faa68586c36bf3b7862a76f407c
     buildsystem: simple
     build-commands:
       - |
