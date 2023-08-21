@@ -26,14 +26,14 @@ modules:
     sources:
       - type: git
         url: https://github.com/reckel-jm/cantara.git
-        tag: v2.4.1
-        commit: e589bdd9ce960faa68586c36bf3b7862a76f407c
+        tag: v2.5.0
+        commit: 357994155bfbc910888277a7dd19de0fbcc23d42
     buildsystem: simple
     build-commands:
       - |
         . /usr/lib/sdk/freepascal/enable.sh
         cd src
-        lazbuild --lazarusdir="$LAZARUS_DIR" -B --bm="Release" --ws="qt5" Cantara.lpi
+        lazbuild --lazarusdir="$LAZARUS_DIR" -B --bm="ReleaseConfined" --ws="qt5" Cantara.lpi
         cd ..
       - install -D src/cantara -t $FLATPAK_DEST/bin
       - cp -r src/languages $FLATPAK_DEST/bin/
