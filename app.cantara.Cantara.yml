@@ -10,6 +10,7 @@ finish-args:
   - --socket=fallback-x11
   - --socket=wayland
   - --filesystem=home
+  - --device=dri
 #icon: app.cantara.Cantara.png
 #rename-desktop-file: cantara.desktop
 modules:
@@ -27,7 +28,7 @@ modules:
       - type: git
         url: https://github.com/reckel-jm/cantara.git
         tag: v2.5.0
-        commit: 488c804fcf15345e1fe3c6268b75e17d6bbf313c
+        commit: ca8d01107018354f316c392e60ca5d7dcdb71561
     buildsystem: simple
     build-commands:
       - |
