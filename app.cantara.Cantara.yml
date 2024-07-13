@@ -27,8 +27,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/reckel-jm/cantara.git
-        tag: v2.6.0
-        commit: 60a620049ae61916297cc6e8f51c698af2adb625
+        commit: ca212f72aca95e90ca4aaec02295d54814127feb
     buildsystem: simple
     build-commands:
       - |
