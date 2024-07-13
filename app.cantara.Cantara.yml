@@ -1,6 +1,6 @@
 app-id: app.cantara.Cantara
 runtime: org.kde.Platform
-runtime-version: '5.15-22.08'
+runtime-version: '5.15-23.08'
 sdk: org.kde.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.freepascal
@@ -27,15 +27,23 @@ modules:
     sources:
       - type: git
         url: https://github.com/reckel-jm/cantara.git
-        tag: v2.5.0
-        commit: ca8d01107018354f316c392e60ca5d7dcdb71561
+        tag: v2.6.0
+        commit: 60a620049ae61916297cc6e8f51c698af2adb625
     buildsystem: simple
     build-commands:
       - |
         . /usr/lib/sdk/freepascal/enable.sh
         cd src
+        lazbuild --ws="qt5" bgrabitmap/bgrabitmap/bgrabitmappack.lpk
         lazbuild --lazarusdir="$LAZARUS_DIR" -B --bm="ReleaseConfined" --ws="qt5" Cantara.lpi
         cd ..
+        for po_file in src/locals/cantara.*.po; do
+            lang_code=$(basename "$po_file" .po | cut -d'.' -f2)
+            mo_file="src/languages/$lang_code/cantara.mo"
+            echo "Compiling $po_file to $mo_file"
+            echo "msgfmt -o $mo_file $po_file"
+            msgfmt -o "$mo_file" "$po_file"
+        done
       - install -D src/cantara -t $FLATPAK_DEST/bin
       - cp -r src/languages $FLATPAK_DEST/bin/
       - install -D icons/64.png $FLATPAK_DEST/share/icons/hicolor/64x64/apps/app.cantara.Cantara.png
