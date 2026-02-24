@@ -1,6 +1,6 @@
 app-id: app.cantara.Cantara
 runtime: org.kde.Platform
-runtime-version: '5.15-25.08'
+runtime-version: '6.9'
 sdk: org.kde.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.freepascal
@@ -9,12 +9,10 @@ finish-args:
   - --share=ipc
   - --socket=fallback-x11
   - --socket=wayland
-  - --filesystem=home
   - --device=dri
-#icon: app.cantara.Cantara.png
-#rename-desktop-file: cantara.desktop
+
 modules:
-  - name: qt5pas
+  - name: qt6pas
     buildsystem: qmake
     config-opts:
       - -after
@@ -22,19 +20,20 @@ modules:
     sources:
       - type: shell
         commands:
-          - cp -r /usr/lib/sdk/freepascal/share/lazarus/lcl/interfaces/qt5/cbindings/. .
+          - cp -r /usr/lib/sdk/freepascal/share/lazarus/lcl/interfaces/qt6/cbindings/. .
   - name: cantara
     sources:
       - type: git
         url: https://github.com/reckel-jm/cantara.git
-        commit: ca212f72aca95e90ca4aaec02295d54814127feb
+        commit: ca8714ed5e4f96f86ac9691863ce67d532438e47
     buildsystem: simple
     build-commands:
       - |
         . /usr/lib/sdk/freepascal/enable.sh
         cd src
-        lazbuild --ws="qt5" bgrabitmap/bgrabitmap/bgrabitmappack.lpk
-        lazbuild --lazarusdir="$LAZARUS_DIR" -B --bm="ReleaseConfined" --ws="qt5" Cantara.lpi
+        lazbuild --ws="qt6" bgrabitmap/bgrabitmap/bgrabitmappack.lpk
+        lazbuild -B --ws="qt6" metadarkstyle/metadarkstyle.lpk
+        lazbuild --lazarusdir="$LAZARUS_DIR" -B --bm="ReleaseConfined" --ws="qt6" Cantara.lpi
         cd ..
         for po_file in src/locals/cantara.*.po; do
             lang_code=$(basename "$po_file" .po | cut -d'.' -f2)
